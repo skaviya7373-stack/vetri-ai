@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="hero fade">
+
+    <h1>📝 Create Your Account</h1>
+
+    <p>
+        Register to access all AI features in Vetri AI Study Buddy.
+    </p>
+
+    <form method="POST">
+
+        {% csrf_token %}
+
+        {{ form.as_p }}
+
+        <button type="submit">
+            📝 Register
+        </button>
+
+    </form>
+
+    <br>
+
+    <p>
+        Already have an account?
+        <a href="{% url 'login' %}">
+            <b>Login Here</b>
+        </a>
+    </p>
+
+</div>
+
+{% endblock %}

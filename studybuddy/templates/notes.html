@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="hero fade">
+
+    <h1>📝 AI Smart Notes Generator</h1>
+
+    <p>
+        Generate detailed AI-powered study notes instantly using Vetri AI Study Buddy.
+    </p>
+
+    <form method="POST">
+
+        {% csrf_token %}
+
+        <input
+            type="text"
+            name="topic"
+            value="{{ topic }}"
+            placeholder="Enter Topic (Example: Python, DBMS)"
+            required>
+
+        <button type="submit">
+            🚀 Generate Notes
+        </button>
+
+    </form>
+
+</div>
+
+<hr>
+
+{% if content %}
+
+<h2>📝 Generated Notes</h2>
+
+<div id="ai-content" class="history-card fade">
+
+    <pre>{{ content }}</pre>
+
+</div>
+
+<br>
+
+<button
+    class="copy-btn"
+    onclick="copyContent()">
+    📋 Copy Notes
+</button>
+
+<button
+    class="download-btn"
+    onclick="downloadPDF()">
+    📄 Download PDF
+</button>
+
+{% endif %}
+
+{% endblock %}

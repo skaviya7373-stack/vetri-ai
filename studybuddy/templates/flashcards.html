@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="hero fade">
+
+    <h1>🎴 AI Flashcards Generator</h1>
+
+    <p>
+        Generate AI-powered flashcards instantly using Vetri AI Study Buddy.
+    </p>
+
+    <form method="POST">
+        {% csrf_token %}
+
+        <input
+            type="text"
+            name="topic"
+            value="{{ topic }}"
+            placeholder="Enter Topic (Example: Python, DBMS)"
+            required>
+
+        <button type="submit">
+            🚀 Generate Flashcards
+        </button>
+
+    </form>
+
+</div>
+
+<hr>
+
+{% if content %}
+
+<h2>🎴 Generated Flashcards</h2>
+
+<div id="ai-content" class="history-card fade">
+    <pre>{{ content }}</pre>
+</div>
+
+<br>
+
+<button
+    class="copy-btn"
+    onclick="copyContent()">
+    📋 Copy Flashcards
+</button>
+
+<button
+    class="download-btn"
+    onclick="downloadPDF()">
+    📄 Download PDF
+</button>
+
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,128 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<section class="hero fade">
+
+    <h1>🎓 Vetri AI Study Buddy</h1>
+
+    <p>
+        AI Powered Study Assistant using
+        <b>Groq Llama 3.3 70B</b>.
+        Generate Smart Notes, Quiz Questions,
+        Flashcards and Study Plans instantly.
+    </p>
+
+    {% if user.is_authenticated %}
+
+        <h3>👋 Welcome {{ user.username }}</h3>
+
+        <form method="POST">
+            {% csrf_token %}
+
+            <input
+                type="text"
+                name="topic"
+                placeholder="Enter Topic (Example: Python, DBMS)"
+                required>
+
+            <select name="feature">
+                <option value="notes">📝 Smart Notes</option>
+                <option value="quiz">❓ Quiz Generator</option>
+                <option value="flashcards">🎴 Flashcards</option>
+                <option value="study_plan">📅 Study Plan</option>
+            </select>
+
+            <button type="submit">
+                🚀 Generate
+            </button>
+
+        </form>
+
+    {% else %}
+
+        <br>
+
+        <h3>🔐 Please Login to use AI Features</h3>
+
+        <br>
+
+        <a href="/login/">
+            <button type="button">🔑 Login</button>
+        </a>
+
+        <a href="/register/">
+            <button type="button">📝 Register</button>
+        </a>
+
+    {% endif %}
+
+</section>
+
+<br>
+
+<h2>📊 Dashboard</h2>
+
+<section class="cards">
+
+    <div class="card zoom">
+        <h2>📝 Notes</h2>
+        <h1>{{ total_notes }}</h1>
+    </div>
+
+    <div class="card zoom">
+        <h2>❓ Quiz</h2>
+        <h1>{{ total_quiz }}</h1>
+    </div>
+
+    <div class="card zoom">
+        <h2>🎴 Flashcards</h2>
+        <h1>{{ total_flashcards }}</h1>
+    </div>
+
+    <div class="card zoom">
+        <h2>📅 Study Plans</h2>
+        <h1>{{ total_studyplan }}</h1>
+    </div>
+
+</section>
+
+<br>
+
+<h2>🚀 AI Features</h2>
+
+<section class="cards">
+
+    <a href="/notes/" class="card zoom">
+        <h2>📝 Smart Notes</h2>
+        <p>Create detailed AI generated notes.</p>
+    </a>
+
+    <a href="/quiz/" class="card zoom">
+        <h2>❓ Quiz Generator</h2>
+        <p>Generate MCQ questions instantly.</p>
+    </a>
+
+    <a href="/flashcards/" class="card zoom">
+        <h2>🎴 Flashcards</h2>
+        <p>Quick revision flashcards.</p>
+    </a>
+
+    <a href="/study-plan/" class="card zoom">
+        <h2>📅 Study Plan</h2>
+        <p>Personalized study timetable.</p>
+    </a>
+
+    <a href="/history/" class="card zoom">
+        <h2>📜 AI History</h2>
+        <p>View all generated AI content.</p>
+    </a>
+
+    <a href="/download-pdf/" class="card zoom">
+        <h2>📄 Download PDF</h2>
+        <p>Download your latest AI generated PDF.</p>
+    </a>
+
+</section>
+
+{% endblock %}

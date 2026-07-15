@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h2>📜 AI History</h2>
+
+{% for item in history %}
+
+<div class="card">
+
+    <h3>{{ item.topic }}</h3>
+
+    <p><b>Feature:</b> {{ item.feature }}</p>
+
+    <pre>{{ item.content }}</pre>
+
+    <small>{{ item.created_at }}</small>
+
+</div>
+
+<br>
+
+{% empty %}
+
+<p>No History Found.</p>
+
+{% endfor %}
+
+{% endblock %}
