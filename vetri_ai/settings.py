@@ -9,16 +9,22 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = "django-insecure-m4_a-)1&jz+5dk$0pm%ash4!y1!#jx&n_zx9zriurri)^t*^$!"
 
-# Render Deployment
 DEBUG = False
 
 ALLOWED_HOSTS = ["*"]
+
+# Render Security
+CSRF_TRUSTED_ORIGINS = [
+    "https://*.onrender.com",
+]
+
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
 
 
 # ---------------- INSTALLED APPS ----------------
 
 INSTALLED_APPS = [
-
     "studybuddy",
 
     "django.contrib.admin",
@@ -27,17 +33,14 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-
 ]
 
 
 # ---------------- MIDDLEWARE ----------------
 
 MIDDLEWARE = [
-
     "django.middleware.security.SecurityMiddleware",
 
-    # WhiteNoise Middleware
     "whitenoise.middleware.WhiteNoiseMiddleware",
 
     "django.contrib.sessions.middleware.SessionMiddleware",
@@ -46,7 +49,6 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
-
 ]
 
 
@@ -58,13 +60,10 @@ ROOT_URLCONF = "vetri_ai.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-
         "DIRS": [
             BASE_DIR / "studybuddy" / "templates",
         ],
-
         "APP_DIRS": True,
-
         "OPTIONS": {
             "context_processors": [
                 "django.template.context_processors.request",
@@ -141,9 +140,7 @@ MEDIA_ROOT = BASE_DIR / "media"
 # ---------------- LOGIN ----------------
 
 LOGIN_URL = "/login/"
-
 LOGIN_REDIRECT_URL = "/"
-
 LOGOUT_REDIRECT_URL = "/"
 
 
