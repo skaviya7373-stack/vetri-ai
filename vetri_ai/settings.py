@@ -3,26 +3,32 @@ Django settings for vetri_ai project.
 """
 
 from pathlib import Path
+import os
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+SECRET_KEY = os.getenv(
+    "SECRET_KEY",
+    "django-insecure-m4_a-)1&jz+5dk$0pm%ash4!y1!#jx&n_zx9zriurri)^t*^$!"
+)
 
-SECRET_KEY = "django-insecure-m4_a-)1&jz+5dk$0pm%ash4!y1!#jx&n_zx9zriurri)^t*^$!"
+DEBUG = os.getenv("DEBUG", "False") == "True"
 
-DEBUG = False
+ALLOWED_HOSTS = [
+    ".onrender.com",
+    "127.0.0.1",
+    "localhost",
+]
 
-ALLOWED_HOSTS = ["*"]
-
-# Render Security
 CSRF_TRUSTED_ORIGINS = [
     "https://*.onrender.com",
 ]
 
+SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
+
 SESSION_COOKIE_SECURE = True
 CSRF_COOKIE_SECURE = True
 
-
-# ---------------- INSTALLED APPS ----------------
 
 INSTALLED_APPS = [
     "studybuddy",
@@ -36,11 +42,8 @@ INSTALLED_APPS = [
 ]
 
 
-# ---------------- MIDDLEWARE ----------------
-
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
-
     "whitenoise.middleware.WhiteNoiseMiddleware",
 
     "django.contrib.sessions.middleware.SessionMiddleware",
@@ -53,9 +56,6 @@ MIDDLEWARE = [
 
 
 ROOT_URLCONF = "vetri_ai.urls"
-
-
-# ---------------- TEMPLATES ----------------
 
 TEMPLATES = [
     {
@@ -74,11 +74,7 @@ TEMPLATES = [
     },
 ]
 
-
 WSGI_APPLICATION = "vetri_ai.wsgi.application"
-
-
-# ---------------- DATABASE ----------------
 
 DATABASES = {
     "default": {
@@ -86,9 +82,6 @@ DATABASES = {
         "NAME": BASE_DIR / "db.sqlite3",
     }
 }
-
-
-# ---------------- PASSWORD ----------------
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -105,9 +98,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
-# ---------------- LANGUAGE ----------------
-
 LANGUAGE_CODE = "en-us"
 
 TIME_ZONE = "Asia/Kolkata"
@@ -116,8 +106,6 @@ USE_I18N = True
 
 USE_TZ = True
 
-
-# ---------------- STATIC ----------------
 
 STATIC_URL = "/static/"
 
@@ -130,14 +118,9 @@ STATIC_ROOT = BASE_DIR / "staticfiles"
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 
-# ---------------- MEDIA ----------------
-
 MEDIA_URL = "/media/"
-
 MEDIA_ROOT = BASE_DIR / "media"
 
-
-# ---------------- LOGIN ----------------
 
 LOGIN_URL = "/login/"
 LOGIN_REDIRECT_URL = "/"
