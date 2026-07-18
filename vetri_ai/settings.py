@@ -20,23 +20,16 @@ SECRET_KEY = os.getenv(
 DEBUG = os.getenv("DEBUG", "False") == "True"
 
 ALLOWED_HOSTS = [
-    ".onrender.com",
     "127.0.0.1",
     "localhost",
+    ".onrender.com",
 ]
-
 
 CSRF_TRUSTED_ORIGINS = [
     "https://*.onrender.com",
 ]
 
-
 SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
-
-# Temporary fix for Render login/session
-SESSION_COOKIE_SECURE = False
-CSRF_COOKIE_SECURE = False
-SECURE_SSL_REDIRECT = False
 
 
 # ==========================
@@ -72,10 +65,6 @@ MIDDLEWARE = [
 ]
 
 
-# ==========================
-# URLS
-# ==========================
-
 ROOT_URLCONF = "vetri_ai.urls"
 
 
@@ -99,7 +88,6 @@ TEMPLATES = [
         },
     },
 ]
-
 
 WSGI_APPLICATION = "vetri_ai.wsgi.application"
 
@@ -141,11 +129,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # ==========================
 
 LANGUAGE_CODE = "en-us"
-
 TIME_ZONE = "Asia/Kolkata"
 
 USE_I18N = True
-
 USE_TZ = True
 
 
@@ -153,7 +139,7 @@ USE_TZ = True
 # STATIC FILES
 # ==========================
 
-STATIC_URL = "/static/"
+STATIC_URL = "static/"
 
 STATICFILES_DIRS = [
     BASE_DIR / "studybuddy" / "static",
@@ -161,9 +147,7 @@ STATICFILES_DIRS = [
 
 STATIC_ROOT = BASE_DIR / "staticfiles"
 
-STATICFILES_STORAGE = (
-    "whitenoise.storage.CompressedManifestStaticFilesStorage"
-)
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 
 # ==========================
@@ -171,7 +155,7 @@ STATICFILES_STORAGE = (
 # ==========================
 
 MEDIA_URL = "/media/"
-MEDIA_ROOT = BASE_DIR / "media"
+MEDIA_ROOT = BASE_DIR / "media/"
 
 
 # ==========================
