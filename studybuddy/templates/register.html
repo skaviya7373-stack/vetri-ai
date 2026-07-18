@@ -10,11 +10,31 @@
         Register to access all AI features in Vetri AI Study Buddy.
     </p>
 
+    {% if form.errors %}
+    <div style="background:#ffe6e6; color:red; padding:10px; border-radius:8px; margin-bottom:20px;">
+        <b>Please fix the following errors:</b>
+        {{ form.errors }}
+    </div>
+    {% endif %}
+
     <form method="POST">
 
         {% csrf_token %}
 
-        {{ form.as_p }}
+        <p>
+            <label>Username</label><br>
+            {{ form.username }}
+        </p>
+
+        <p>
+            <label>Email</label><br>
+            {{ form.email }}
+        </p>
+
+        <p>
+            <label>Password</label><br>
+            {{ form.password }}
+        </p>
 
         <button type="submit">
             📝 Register
